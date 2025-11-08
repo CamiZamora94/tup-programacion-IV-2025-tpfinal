@@ -1,0 +1,35 @@
+@url=http://localhost:3306
+
+### Login
+# @name login
+POST {{url}}/auth/login
+Content-Type: application/json
+
+{
+    "username": "pepe12",
+    "password": "hola1234"
+}
+
+###
+@token = {{login.response.body.token}}
+
+### Consultar usuarios
+GET {{url}}/usuarios
+Authorization: Bearer {{token}}
+
+### Consultar por un usuario
+GET {{url}}/usuarios/1
+
+
+### Crear usuario
+POST {{url}}/usuarios
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "username": "elimitar",
+    "nombre": "Algo",
+    "email":"Jose",
+    "password": "hola1234"
+}
+
